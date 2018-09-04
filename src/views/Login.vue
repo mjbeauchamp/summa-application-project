@@ -1,25 +1,34 @@
 <template>
-  <v-form v-model="valid">
+  <v-container class="container">
+    <v-form v-model="valid">
     <v-text-field
       v-model="usernameInput"
       :rules="usernameRules"
       label="Username"
       required
+      outline
+      class="textField"
     ></v-text-field>
     <v-text-field
       v-model="passwordInput"
       :rules="passwordRules"
       label="Password"
       required
+      outline
+      class="textField"
     ></v-text-field>
     <v-btn
       :disabled="!valid"
-      @click="submit"
+      @click="login"
+      block
+      large
+      class="button"
     >
       submit
     </v-btn>
     <p>Don't have an account? <router-link to="/signup">Signup</router-link></p>
   </v-form>
+  </v-container>
 </template>
 
 <script>
@@ -43,13 +52,11 @@ export default {
     }
   },
   methods: {
-    submit () {
+    login () {
       if (this.$refs.form.validate()) {
         // Native form submission is not yet supported
-        axios.post('/signup', {
-          name: this.nameInput,
+        axios.post('/login', {
           username: this.usernameInput,
-          email: this.emailInput,
           password: this.passwordInput
         })
           .then(response => {
@@ -66,5 +73,9 @@ export default {
 h1 {
     color: red;
     font-size: 50px;
+}
+
+.container {
+  padding-bottom: 200px;
 }
 </style>

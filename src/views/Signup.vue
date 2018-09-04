@@ -1,31 +1,43 @@
 <template>
-  <v-form v-model="valid">
+  <v-container class='container'>
+    <v-form v-model="valid">
     <v-text-field
       v-model="nameInput"
       v-on:change='nameChange'
       :rules="nameRules"
       label="Name"
       required
+      outline
+      class="textField"
     ></v-text-field>
     <v-text-field
       v-model="usernameInput"
       :rules="nameRules"
       label="Username"
       required
+      outline
+      class="textField"
     ></v-text-field>
     <v-text-field
       v-model="emailInput"
       :rules="emailRules"
       label="E-mail"
       required
+      outline
+      class="textField"
     ></v-text-field>
     <v-text-field
       v-model="passwordInput"
       :rules="passwordRules"
       label="Password"
       required
+      outline
+      class="textField"
     ></v-text-field>
     <v-btn
+      class="button"
+      block
+      large
       :disabled="!valid"
       @click="submit"
     >
@@ -33,6 +45,7 @@
     </v-btn>
     <p>Already have an account? <router-link to="/login">Login</router-link></p>
   </v-form>
+  </v-container>
 </template>
 
 <script>
@@ -85,9 +98,27 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 h1 {
     color: red;
     font-size: 50px;
 }
+
+.textField {
+  width: 500px;
+}
+
+.container {
+  padding: 60px 0px 40px 0px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  width: 60%;
+  background-color: lightgray;
+}
+
+.button {
+  margin-bottom: 20px;
+}
+
 </style>

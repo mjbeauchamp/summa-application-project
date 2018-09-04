@@ -1,12 +1,63 @@
 <template>
-  <div class="hello">
-    <h1>Login</h1>
-  </div>
+  <v-form v-model="valid">
+    <v-text-field
+      v-model="usernameInput"
+      :rules="usernameRules"
+      label="Username"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="passwordInput"
+      :rules="passwordRules"
+      label="Password"
+      required
+    ></v-text-field>
+    <v-btn
+      :disabled="!valid"
+      @click="submit"
+    >
+      submit
+    </v-btn>
+    <p>Don't have an account? <router-link to="/signup">Signup</router-link></p>
+  </v-form>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      usernameInput: '',
+      passwordInput: '',
+      valid: false,
+      usernameRules: [
+        v => !!v || 'Username is required'
+        // v => v.length <= 10 || 'Name must be less than 10 characters'
+      ],
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => v.length >= 12 || 'Password must be at least 12 characters'
+      ]
+    }
+  },
+  methods: {
+    submit () {
+      if (this.$refs.form.validate()) {
+        // Native form submission is not yet supported
+        axios.post('/signup', {
+          name: this.nameInput,
+          username: this.usernameInput,
+          email: this.emailInput,
+          password: this.passwordInput
+        })
+          .then(response => {
+            this.$refs.form.reset()
+          })
+      }
+    }
+  }
 }
 </script>
 

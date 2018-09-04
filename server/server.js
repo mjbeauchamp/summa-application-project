@@ -20,23 +20,19 @@ massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
 })
 
-// app.use(session({
-//     secret: SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: true
-// }))
-
-//"Database"
-let id = 1
-let text = ["I'm user 1!", "I'm user 2!"]
-
-
+app.use(session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+}))
 
 
 //ENDPOINTS
 
 app.get('/users', controllers.get_users);
 app.post('/users', controllers.create_user);
+app.post('/login', controllers.login);
+app.get('/logout', controllers.logout);
 
 
 

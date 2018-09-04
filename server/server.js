@@ -28,17 +28,22 @@ let {
 //     saveUninitialized: true
 // }))
 
+//"Database"
+let text = ["I'm user 1!", "I'm user 2!"]
+
 
 
 
 //ENDPOINTS
 
-//app.get('/auth/all_usernames', authControllers.all_usernames);
+app.get('/users', function(req, res){
+    res.send(text[0]);
+});
 
 
 
 
 
-app.listen(4000, () => {
-    console.log(`Server docked in port 4000`)
+app.listen(SERVER_PORT, () => {
+    console.log(`Server docked in port ${SERVER_PORT}`)
 });

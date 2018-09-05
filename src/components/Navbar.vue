@@ -3,7 +3,11 @@
     <h1 v-if="currentRoute === 'login'">Login</h1>
     <h1 v-if="currentRoute === 'signup'">Signup</h1>
     <h1 v-if="currentRoute === 'users'">Users</h1>
-    <button id="logoutBtn" @click="logout" v-if="loginState">
+    <button
+      id="logoutBtn"
+      @click="logout"
+      v-if="loginState"
+    >
       <h1>Logout</h1>
     </button>
   </div>
@@ -13,7 +17,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'Navbar',
+  name: 'NavBar',
   props: {
     currentRoute: String,
     loginState: Boolean
@@ -31,12 +35,12 @@ export default {
 </script>
 
 <style scoped>
-  #nav {
-  width: 100%;
-  background-color: lightgray;
-  margin-bottom: 60px;
-  padding: 20px 0px;
-  position: relative;
+#nav {
+width: 100%;
+background-color: lightgray;
+margin-bottom: 60px;
+padding: 20px 0px;
+position: relative;
 }
 
 #logoutBtn, h1 {

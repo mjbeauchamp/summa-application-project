@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Navbar v-bind:currentRoute="currentRoute" v-bind:loginState="this.$store.state.userIsLoggedIn"/>
+    <NavBar
+      :current-route="currentRoute"
+      :login-state="this.$store.state.userIsLoggedIn"
+    />
 
     <v-alert
       v-model="alert"
@@ -11,44 +14,44 @@
       Please enter a correct username and password.
     </v-alert>
     <v-container class="container">
-    <v-form v-model="valid">
-      <v-text-field
-        v-model="usernameInput"
-        :rules="usernameRules"
-        label="Username"
-        required
-        outline
-        class="textField"
-      ></v-text-field>
-      <v-text-field
-        v-model="passwordInput"
-        :rules="passwordRules"
-        label="Password"
-        required
-        outline
-        class="textField"
-      ></v-text-field>
-      <v-btn
-        :disabled="!valid"
-        @click="login"
-        block
-        large
-        class="button"
-      >
-        submit
-      </v-btn>
-      <p>Don't have an account? <router-link to="/signup">Signup</router-link></p>
-  </v-form>
-  </v-container>
+      <v-form v-model="valid">
+        <v-text-field
+          v-model="usernameInput"
+          :rules="usernameRules"
+          label="Username"
+          required
+          outline
+          class="textField"
+        ></v-text-field>
+        <v-text-field
+          v-model="passwordInput"
+          :rules="passwordRules"
+          label="Password"
+          required
+          outline
+          class="textField"
+        ></v-text-field>
+        <v-btn
+          :disabled="!valid"
+          @click="login"
+          block
+          large
+          class="button"
+        >
+          submit
+        </v-btn>
+        <p>Don't have an account? <router-link to="/signup">Signup</router-link></p>
+      </v-form>
+    </v-container>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Navbar from '@/components/Navbar.vue'
+import NavBar from '@/components/Navbar.vue'
 
 export default {
-  name: 'Login',
+  name: 'LoginPage',
   data () {
     return {
       alert: false,
@@ -67,7 +70,7 @@ export default {
     }
   },
   components: {
-    Navbar
+    NavBar
   },
   methods: {
     login () {

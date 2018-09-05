@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
-import Login from './views/Login.vue'
-import Users from './views/Users.vue'
-import Signup from './views/Signup.vue'
+import LoginPage from './views/Login.vue'
+import UsersPage from './views/Users.vue'
+import SignupPage from './views/Signup.vue'
 
 Vue.use(Router)
 
@@ -14,17 +14,17 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: LoginPage
     },
     {
       path: '/signup',
       name: 'signup',
-      component: Signup
+      component: SignupPage
     },
     {
       path: '/users',
       name: 'users',
-      component: Users,
+      component: UsersPage,
       meta: {
         requiresAuth: true
       }
@@ -35,6 +35,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     let auth = store.state.userIsLoggedIn
+
     if (auth) {
       next()
     } else if (!auth) {

@@ -1,9 +1,16 @@
 <template>
   <div class="hello">
-    <Navbar v-bind:currentRoute="currentRoute" v-bind:loginState="this.$store.state.userIsLoggedIn"/>
+    <NavBar
+      :current-route="currentRoute"
+      :login-state="this.$store.state.userIsLoggedIn"
+    />
 
     <ul>
-      <li v-for="item in users" v-bind:class="{ highlight: item.id === currentUser.id  }" v-bind:key="item.id">
+      <li
+        v-for="item in users"
+        :class="{ highlight: item.id === currentUser.id  }"
+        :key="item.id"
+      >
         <p>{{item.name}}</p>
         <p>{{item.username}}</p>
         <p>{{item.email}}</p>
@@ -14,10 +21,10 @@
 
 <script>
 import axios from 'axios'
-import Navbar from '@/components/Navbar.vue'
+import NavBar from '@/components/Navbar.vue'
 
 export default {
-  name: 'Users',
+  name: 'UsersPage',
   data () {
     return {
       currentRoute: this.$route.name,
@@ -26,7 +33,7 @@ export default {
     }
   },
   components: {
-    Navbar
+    NavBar
   },
   mounted () {
     axios.get(`api/users`)

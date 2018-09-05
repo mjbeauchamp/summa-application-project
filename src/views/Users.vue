@@ -61,7 +61,7 @@ p {
 }
 
 li {
-  margin: 50px;
+  margin: 30px;
 }
 
 .highlight {

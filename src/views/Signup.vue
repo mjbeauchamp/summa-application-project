@@ -42,7 +42,7 @@
 
 <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="500">
-      <v-btn
+      <!-- <v-btn
         :disabled="!valid"
         slot="activator"
         class="button"
@@ -50,9 +50,9 @@
         large
         color="primary"
         dark
-      >
-        submit
-      </v-btn>
+      > -->
+        <!-- submit
+      </v-btn> -->
       <v-card>
         <v-card-title class="headline">Please Confirm Your Information</v-card-title>
         <v-card-text>
@@ -75,7 +75,7 @@
       block
       large
       :disabled="!valid"
-      @click="submit"
+      @click="showModal"
     >
       submit
     </v-btn>
@@ -123,6 +123,9 @@ export default {
   methods: {
     nameChange () {
       console.log(this.nameInput)
+    },
+    showModal () {
+      this.dialog = true;
     },
     submit () {
       // if (this.$refs.form.validate()) {

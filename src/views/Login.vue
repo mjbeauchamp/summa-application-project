@@ -1,6 +1,15 @@
 <template>
   <div>
     <Navbar v-bind:currentRoute="currentRoute"/>
+
+    <v-alert
+      v-model="alert"
+      dismissible
+      type="error"
+      color="red"
+    >
+      Please enter a correct username and password.
+    </v-alert>
     
     <v-container class="container">
     <v-form v-model="valid">
@@ -43,10 +52,12 @@ export default {
   name: 'Login',
   data () {
     return {
+      alert: false,
       currentRoute: this.$route.name,
       usernameInput: '',
       passwordInput: '',
       valid: false,
+      tryAgain: false,
       usernameRules: [
         v => !!v || 'Username is required'
         // v => v.length <= 10 || 'Name must be less than 10 characters'
@@ -69,11 +80,13 @@ export default {
         password: this.passwordInput
       })
         .then(response => {
-          this.$store.commit('loggedIn')
-          // this.usernameInput = ''
-          // this.passwordInput = ''
-          // console.log(response)
-          this.$router.push('users')
+          console.log(response.data)
+          if(response.data){
+            this.$store.commit('loggedIn')
+            this.$router.push('users')
+          } else {
+            this.alert = true;
+          }
         })
       // }
     }

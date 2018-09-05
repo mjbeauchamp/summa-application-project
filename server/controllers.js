@@ -29,18 +29,17 @@ module.exports = {
     login: (req, res) => {
         const dbInstance = req.app.get('db');
         const {username, password} = req.body;
-        //I need to pull this "hash" argument from the database using the username
 
-                        dbInstance.get_user([username, password])
-                            .then(user => {
-                                req.session.user = user[0]
-                                console.log(req.session.user)
-                                res.status(200).send(req.session.user);
-                            })
-                            .catch(err => {
-                                res.status(500).send({errorMessage: "Oops! Something went wrong"});
-                                console.log(err)
-                        });
+        dbInstance.get_user([username, password])
+            .then(user => {
+                req.session.user = user[0]
+                console.log(req.session.user)
+                res.status(200).send(req.session.user);
+            })
+            .catch(err => {
+                 res.status(500).send({errorMessage: "Oops! Something went wrong"});
+                console.log(err)
+        });
     },
 
     logout: (req, res) => {
@@ -52,6 +51,8 @@ module.exports = {
     currentUser: (req, res) => {
         if(req.session.user){
             res.status(200).send(req.session.user)
+        } else {
+            res.status(200).send("No current user")
         }
     }
 }

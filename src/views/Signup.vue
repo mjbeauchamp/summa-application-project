@@ -137,11 +137,7 @@ export default {
           password: this.passwordInput
         })
           .then(response => {
-            this.nameInput = ''
-            this.usernameInput = ''
-            this.emailInput = ''
-            this.passwordInput = ''
-            console.log('State values:', this.nameInput, this.usernameInput, this.emailInput, this.passwordInput)
+            this.$store.commit('loggedIn')
             this.$router.push('users')
           })
       // }

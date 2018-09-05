@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar v-bind:currentRoute="currentRoute"/>
+    <Navbar v-bind:currentRoute="currentRoute" v-bind:loginState="this.$store.state.userIsLoggedIn"/>
 
     <v-alert
       v-model="alert"

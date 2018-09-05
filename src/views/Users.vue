@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <Navbar v-bind:currentRoute="currentRoute"/>
+    <Navbar v-bind:currentRoute="currentRoute" v-bind:loginState="this.$store.state.userIsLoggedIn"/>
 
     <ul>
       <li v-for="item in users" v-bind:class="{ highlight: item.id === currentUser.id  }">

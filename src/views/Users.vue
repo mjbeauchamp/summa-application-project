@@ -3,7 +3,7 @@
     <Navbar v-bind:currentRoute="currentRoute" v-bind:loginState="this.$store.state.userIsLoggedIn"/>
 
     <ul>
-      <li v-for="item in users" v-bind:class="{ highlight: item.id === currentUser.id  }">
+      <li v-for="item in users" v-bind:class="{ highlight: item.id === currentUser.id  }" v-bind:key="item.id">
         <p>{{item.name}}</p>
         <p>{{item.username}}</p>
         <p>{{item.email}}</p>
@@ -37,13 +37,10 @@ export default {
             this.currentUser = current.data
           })
       })
-    // let newWord = "Rawr!!!"
-    // this.myText = newWord
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 ul {
   list-style-type: none;

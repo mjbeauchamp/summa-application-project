@@ -20,20 +20,16 @@ export default {
   },
   methods: {
     logout () {
-    // if (this.$refs.form.validate()) {
-      // Native form submission is not yet supported
       axios.get('/api/logout')
         .then(response => {
           this.$store.commit('loggedOut')
           this.$router.push('login')
         })
-    // }
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #nav {
   width: 100%;

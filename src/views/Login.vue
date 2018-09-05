@@ -10,7 +10,6 @@
     >
       Please enter a correct username and password.
     </v-alert>
-    
     <v-container class="container">
     <v-form v-model="valid">
       <v-text-field
@@ -60,7 +59,6 @@ export default {
       tryAgain: false,
       usernameRules: [
         v => !!v || 'Username is required'
-        // v => v.length <= 10 || 'Name must be less than 10 characters'
       ],
       passwordRules: [
         v => !!v || 'Password is required',
@@ -73,29 +71,24 @@ export default {
   },
   methods: {
     login () {
-      // if (this.$refs.form.validate()) {
-      // Native form submission is not yet supported
       axios.post('/api/login', {
         username: this.usernameInput,
         password: this.passwordInput
       })
         .then(response => {
-          if(response.data){
+          if (response.data) {
             this.$store.commit('loggedIn')
             this.$router.push('users')
           } else {
-            this.alert = true;
+            this.alert = true
           }
         })
-      // }
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .container {
   padding-bottom: 212px;
 }

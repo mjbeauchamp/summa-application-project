@@ -37,8 +37,6 @@
       class="textField"
     ></v-text-field>
 
-
-
 <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="500">
       <!-- <v-btn
@@ -68,7 +66,6 @@
     </v-dialog>
   </v-layout>
 
-
     <v-btn
       class="button"
       block
@@ -81,8 +78,6 @@
     <p>Already have an account? <router-link to="/login">Login</router-link></p>
   </v-form>
   </v-container>
-
-
   </div>
 </template>
 
@@ -121,30 +116,25 @@ export default {
   },
   methods: {
     showModal () {
-      this.dialog = true;
+      this.dialog = true
     },
     submit () {
-      // if (this.$refs.form.validate()) {
-        // Native form submission is not yet supported
-        axios.post('/api/users', {
-          name: this.nameInput,
-          username: this.usernameInput,
-          email: this.emailInput,
-          password: this.passwordInput
+      axios.post('/api/users', {
+        name: this.nameInput,
+        username: this.usernameInput,
+        email: this.emailInput,
+        password: this.passwordInput
+      })
+        .then(response => {
+          this.$store.commit('loggedIn')
+          this.$router.push('users')
         })
-          .then(response => {
-            this.$store.commit('loggedIn')
-            this.$router.push('users')
-          })
-      // }
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-
 .textField {
   width: 500px;
 }
@@ -161,5 +151,4 @@ export default {
 .button {
   margin-bottom: 20px;
 }
-
 </style>

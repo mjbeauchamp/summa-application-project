@@ -29,15 +29,12 @@ export default {
     Navbar
   },
   mounted () {
-    console.log(this.$route.name)
-    console.log(this.$store.state.userIsLoggedIn)
     axios.get(`api/users`)
       .then(response => {
         this.users = response.data
         axios.get('/api/current_user')
           .then(current => {
             this.currentUser = current.data
-            console.log(this.currentUser)
           })
       })
     // let newWord = "Rawr!!!"

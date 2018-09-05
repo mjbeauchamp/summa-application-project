@@ -18,7 +18,6 @@ module.exports = {
             dbInstance.create_user([name, username, email, password])
             .then(createdUser => {
                 req.session.user = createdUser[0]
-                console.log(req.session.user)
                 res.status(200).send(createdUser);
             })
             .catch(err => {
@@ -33,7 +32,6 @@ module.exports = {
         dbInstance.get_user([username, password])
             .then(user => {
                 req.session.user = user[0]
-                console.log(req.session.user)
                 res.status(200).send(req.session.user);
             })
             .catch(err => {
@@ -44,8 +42,6 @@ module.exports = {
 
     logout: (req, res) => {
         req.session.destroy();
-        console.log('You successfully logged out!')
-        console.log(req.session)
         res.status(200).send(req.session);
     },
     currentUser: (req, res) => {

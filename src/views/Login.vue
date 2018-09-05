@@ -80,7 +80,6 @@ export default {
         password: this.passwordInput
       })
         .then(response => {
-          console.log(response.data)
           if(response.data){
             this.$store.commit('loggedIn')
             this.$router.push('users')

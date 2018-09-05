@@ -6,7 +6,6 @@
     <v-form v-model="valid">
     <v-text-field
       v-model="nameInput"
-      v-on:change='nameChange'
       :rules="nameRules"
       label="Name"
       required
@@ -121,9 +120,6 @@ export default {
     Navbar
   },
   methods: {
-    nameChange () {
-      console.log(this.nameInput)
-    },
     showModal () {
       this.dialog = true;
     },

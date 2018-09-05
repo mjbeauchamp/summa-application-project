@@ -16,7 +16,6 @@ let {
 } = process.env;
 
 massive(CONNECTION_STRING).then(db => {
-    console.log('db set')
     app.set('db', db);
 })
 
@@ -39,5 +38,5 @@ app.get('/api/current_user', controllers.currentUser);
 
 
 app.listen(SERVER_PORT, () => {
-    console.log(`Server docked in port ${SERVER_PORT}`)
+    console.log(`Server running in port ${SERVER_PORT}`)
 });

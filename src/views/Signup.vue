@@ -94,6 +94,7 @@ export default {
             this.emailInput = ''
             this.passwordInput = ''
             console.log('State values:', this.nameInput, this.usernameInput, this.emailInput, this.passwordInput)
+            this.$router.push('users')
           })
       //}
     }

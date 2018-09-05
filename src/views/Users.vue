@@ -20,10 +20,12 @@ export default {
   name: 'Users',
   data () {
     return {
-      users: []
+      users: [],
+      warning: this.$store.state.warning
     }
   },
   mounted () {
+    console.log(this.warning)
     axios.get(`api/users`)
       .then(response => {
         this.users = response.data

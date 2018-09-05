@@ -16,8 +16,6 @@
 import axios from 'axios'
 import Navbar from '@/components/Navbar.vue'
 
-// const API_URL = 'http://localhost:4000'
-
 export default {
   name: 'Users',
   data () {
@@ -32,6 +30,7 @@ export default {
   },
   mounted () {
     console.log(this.$route.name)
+    console.log(this.$store.state.userIsLoggedIn)
     axios.get(`api/users`)
       .then(response => {
         this.users = response.data

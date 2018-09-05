@@ -28,11 +28,26 @@ export default {
         })
     // }
     }
-  },
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  #nav {
+  width: 100%;
+  background-color: lightgray;
+  margin-bottom: 60px;
+  padding: 20px 0px;
+  position: relative;
+}
 
+#logoutBtn, h1 {
+  display: inline;
+}
+
+#logoutBtn {
+  position: absolute;
+  left: 85%;
+}
 </style>

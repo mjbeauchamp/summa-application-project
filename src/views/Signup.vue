@@ -125,7 +125,7 @@ export default {
       console.log(this.nameInput)
     },
     submit () {
-      //if (this.$refs.form.validate()) {
+      // if (this.$refs.form.validate()) {
         // Native form submission is not yet supported
         axios.post('/api/users', {
           name: this.nameInput,
@@ -141,7 +141,7 @@ export default {
             console.log('State values:', this.nameInput, this.usernameInput, this.emailInput, this.passwordInput)
             this.$router.push('users')
           })
-      //}
+      // }
     }
   }
 }

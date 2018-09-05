@@ -1,7 +1,13 @@
 <template>
   <div class="hello">
     <h1>Users</h1>
-    <p>{{this.myText}}</p>
+    <ul>
+      <li v-for="item in users">
+        <p>{{item.name}} </p>
+        <p>{{item.username}} </p>
+        <p>{{item.email}} </p>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -14,13 +20,13 @@ export default {
   name: 'Users',
   data () {
     return {
-      myText: 'Heya!'
+      users: []
     }
   },
   mounted () {
-    axios.get(`/users`)
+    axios.get(`api/users`)
       .then(response => {
-        this.myText = response.data
+        this.users = response.data
       })
     // let newWord = "Rawr!!!"
     // this.myText = newWord
@@ -33,5 +39,17 @@ export default {
 h1 {
     color: red;
     font-size: 50px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+p {
+  margin: 3px;
+}
+
+li {
+  margin: 50px;
 }
 </style>

@@ -29,10 +29,10 @@ app.use(session({
 
 //ENDPOINTS
 
-app.get('/users', controllers.get_users);
-app.post('/users', controllers.create_user);
-app.post('/login', controllers.login);
-app.get('/logout', controllers.logout);
+app.get('/api/users', controllers.get_users);
+app.post('/api/users', controllers.create_user);
+app.post('/api/login', controllers.login);
+app.get('/api/logout', controllers.logout);
 
 
 

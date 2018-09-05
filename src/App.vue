@@ -6,10 +6,29 @@
       <router-link to="/login">Login</router-link> |
       <router-link to="/signup">Signup</router-link> |
       <router-link to="/users">Users</router-link> |
+      <button @click="logout">Logout</button>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+    
+  methods: {
+    logout () {
+      //if (this.$refs.form.validate()) {
+        // Native form submission is not yet supported
+        axios.get('/api/logout')
+          .then(response => {
+            this.$router.push('login')
+          })
+      //}
+    }
+  }
+}
+</script>
 
 <style>
 #app {

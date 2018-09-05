@@ -59,7 +59,7 @@ export default {
       usernameInput: '',
       emailInput: '',
       passwordInput: '',
-      valid: true,
+      valid: false,
       nameRules: [
         v => !!v || 'Name is required'
         // v => v.length <= 10 || 'Name must be less than 10 characters'
@@ -80,18 +80,22 @@ export default {
       console.log(this.nameInput)
     },
     submit () {
-      if (this.$refs.form.validate()) {
+      //if (this.$refs.form.validate()) {
         // Native form submission is not yet supported
-        axios.post('/signup', {
+        axios.post('/api/users', {
           name: this.nameInput,
           username: this.usernameInput,
           email: this.emailInput,
           password: this.passwordInput
         })
           .then(response => {
-            this.$refs.form.reset()
+            this.nameInput = ''
+            this.usernameInput = ''
+            this.emailInput = ''
+            this.passwordInput = ''
+            console.log('State values:', this.nameInput, this.usernameInput, this.emailInput, this.passwordInput)
           })
-      }
+      //}
     }
   }
 }

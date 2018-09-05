@@ -1,32 +1,32 @@
 <template>
   <v-container class="container">
     <v-form v-model="valid">
-    <v-text-field
-      v-model="usernameInput"
-      :rules="usernameRules"
-      label="Username"
-      required
-      outline
-      class="textField"
-    ></v-text-field>
-    <v-text-field
-      v-model="passwordInput"
-      :rules="passwordRules"
-      label="Password"
-      required
-      outline
-      class="textField"
-    ></v-text-field>
-    <v-btn
-      :disabled="!valid"
-      @click="login"
-      block
-      large
-      class="button"
-    >
-      submit
-    </v-btn>
-    <p>Don't have an account? <router-link to="/signup">Signup</router-link></p>
+      <v-text-field
+        v-model="usernameInput"
+        :rules="usernameRules"
+        label="Username"
+        required
+        outline
+        class="textField"
+      ></v-text-field>
+      <v-text-field
+        v-model="passwordInput"
+        :rules="passwordRules"
+        label="Password"
+        required
+        outline
+        class="textField"
+      ></v-text-field>
+      <v-btn
+        :disabled="!valid"
+        @click="login"
+        block
+        large
+        class="button"
+      >
+        submit
+      </v-btn>
+      <p>Don't have an account? <router-link to="/signup">Signup</router-link></p>
   </v-form>
   </v-container>
 </template>
@@ -53,16 +53,19 @@ export default {
   },
   methods: {
     login () {
-      if (this.$refs.form.validate()) {
+      //if (this.$refs.form.validate()) {
         // Native form submission is not yet supported
-        axios.post('/login', {
+        axios.post('/api/login', {
           username: this.usernameInput,
           password: this.passwordInput
         })
           .then(response => {
-            this.$refs.form.reset()
+            this.usernameInput = ''
+            this.passwordInput = ''
+            console.log(response)
+            this.$router.push('users')
           })
-      }
+      //}
     }
   }
 }
@@ -76,6 +79,6 @@ h1 {
 }
 
 .container {
-  padding-bottom: 200px;
+  padding-bottom: 212px;
 }
 </style>

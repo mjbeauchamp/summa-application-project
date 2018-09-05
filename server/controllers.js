@@ -35,7 +35,7 @@ module.exports = {
                             .then(user => {
                                 req.session.user = user[0]
                                 console.log(req.session.user)
-                                res.status(200).send(user);
+                                res.status(200).send(req.session.user);
                             })
                             .catch(err => {
                                 res.status(500).send({errorMessage: "Oops! Something went wrong"});

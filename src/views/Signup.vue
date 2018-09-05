@@ -1,5 +1,8 @@
 <template>
-  <v-container class='container'>
+  <div>
+    <Navbar v-bind:currentRoute="currentRoute"/>
+
+    <v-container class='container'>
     <v-form v-model="valid">
     <v-text-field
       v-model="nameInput"
@@ -34,6 +37,39 @@
       outline
       class="textField"
     ></v-text-field>
+
+
+
+<v-layout row justify-center>
+    <v-dialog v-model="dialog" persistent max-width="500">
+      <v-btn
+        :disabled="!valid"
+        slot="activator"
+        class="button"
+        block
+        large
+        color="primary"
+        dark
+      >
+        submit
+      </v-btn>
+      <v-card>
+        <v-card-title class="headline">Please Confirm Your Information</v-card-title>
+        <v-card-text>
+          <p>Name: {{nameInput}}</p>
+          <p>Username: {{usernameInput}}</p>
+          <p>Email: {{emailInput}}</p>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" flat @click.native="dialog = false">Edit</v-btn>
+          <v-btn color="green darken-1" flat @click.native="dialog = false" @click="submit">Confirm</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-layout>
+
+
     <v-btn
       class="button"
       block
@@ -41,20 +77,26 @@
       :disabled="!valid"
       @click="submit"
     >
-      create account
+      submit
     </v-btn>
     <p>Already have an account? <router-link to="/login">Login</router-link></p>
   </v-form>
   </v-container>
+
+
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Navbar from '@/components/Navbar.vue'
 
 export default {
   name: 'Signup',
   data () {
     return {
+      currentRoute: this.$route.name,
+      dialog: false,
       nameInput: '',
       usernameInput: '',
       emailInput: '',
@@ -74,6 +116,9 @@ export default {
         v => v.length >= 12 || 'Password must be at least 12 characters'
       ]
     }
+  },
+  components: {
+    Navbar
   },
   methods: {
     nameChange () {
@@ -104,10 +149,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-h1 {
-    color: red;
-    font-size: 50px;
-}
 
 .textField {
   width: 500px;

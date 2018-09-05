@@ -43,10 +43,15 @@ module.exports = {
                         });
     },
 
-    logout: (req, res, next) => {
+    logout: (req, res) => {
         req.session.destroy();
         console.log('You successfully logged out!')
         console.log(req.session)
         res.status(200).send(req.session);
+    },
+    currentUser: (req, res) => {
+        if(req.session.user){
+            res.status(200).send(req.session.user)
+        }
     }
 }

@@ -1,13 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/users">Users</router-link> |
-      <button @click="logout">Logout</button>
-    </div>
     <router-view/>
   </div>
 </template>
@@ -15,6 +7,14 @@
 <script>
 import axios from 'axios'
 export default {
+  // data () {
+  //   return {
+  //     currentRoute: this.$route.name
+  //   }
+  // },
+  //  mounted () {
+  //   console.log(this.currentRoute)
+  // },
   methods: {
     logout () {
     // if (this.$refs.form.validate()) {
@@ -37,6 +37,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  width: 100%;
+  background-color: lightgray;
+  margin-bottom: 60px;
+  padding: 20px 0px;
+  position: relative;
+}
+
+#logoutBtn, h1 {
+  display: inline;
+}
+
+#logoutBtn {
+  position: absolute;
+  left: 85%;
 }
 </style>

@@ -1,11 +1,12 @@
 <template>
   <div class="hello">
-    <h1>Users</h1>
+    <Navbar v-bind:currentRoute="currentRoute"/>
+
     <ul>
-      <li v-for="item in users">
-        <p>{{item.name}} </p>
-        <p>{{item.username}} </p>
-        <p>{{item.email}} </p>
+      <li v-for="item in users" v-bind:class="{ highlight: item.id === currentUser.id  }">
+        <p>{{item.name}}</p>
+        <p>{{item.username}}</p>
+        <p>{{item.email}}</p>
       </li>
     </ul>
   </div>
@@ -13,6 +14,7 @@
 
 <script>
 import axios from 'axios'
+import Navbar from '@/components/Navbar.vue'
 
 // const API_URL = 'http://localhost:4000'
 
@@ -20,15 +22,24 @@ export default {
   name: 'Users',
   data () {
     return {
+      currentRoute: this.$route.name,
       users: [],
-      warning: this.$store.state.warning
+      currentUser: {}
     }
   },
+  components: {
+    Navbar
+  },
   mounted () {
-    console.log(this.warning)
+    console.log(this.$route.name)
     axios.get(`api/users`)
       .then(response => {
         this.users = response.data
+        axios.get('/api/current_user')
+          .then(current => {
+            this.currentUser = current.data
+            console.log(this.currentUser)
+          })
       })
     // let newWord = "Rawr!!!"
     // this.myText = newWord
@@ -38,13 +49,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-    color: red;
-    font-size: 50px;
-}
-
 ul {
   list-style-type: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 p {
@@ -53,5 +63,12 @@ p {
 
 li {
   margin: 50px;
+}
+
+.highlight {
+  color: teal;
+  border: 2px solid teal;
+  padding: 20px;
+  font-weight: bold;
 }
 </style>

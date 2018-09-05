@@ -1,5 +1,8 @@
 <template>
-  <v-container class="container">
+  <div>
+    <Navbar v-bind:currentRoute="currentRoute"/>
+    
+    <v-container class="container">
     <v-form v-model="valid">
       <v-text-field
         v-model="usernameInput"
@@ -29,15 +32,18 @@
       <p>Don't have an account? <router-link to="/signup">Signup</router-link></p>
   </v-form>
   </v-container>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Navbar from '@/components/Navbar.vue'
 
 export default {
   name: 'Login',
   data () {
     return {
+      currentRoute: this.$route.name,
       usernameInput: '',
       passwordInput: '',
       valid: false,
@@ -50,6 +56,9 @@ export default {
         v => v.length >= 12 || 'Password must be at least 12 characters'
       ]
     }
+  },
+  components: {
+    Navbar
   },
   methods: {
     login () {
@@ -74,10 +83,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-    color: red;
-    font-size: 50px;
-}
 
 .container {
   padding-bottom: 212px;

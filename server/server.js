@@ -33,6 +33,7 @@ app.get('/api/users', controllers.get_users);
 app.post('/api/users', controllers.create_user);
 app.post('/api/login', controllers.login);
 app.get('/api/logout', controllers.logout);
+app.get('/api/current_user', controllers.currentUser);
 
 
 

@@ -15,16 +15,16 @@
 <script>
 import axios from 'axios'
 export default {
-    
   methods: {
     logout () {
-      //if (this.$refs.form.validate()) {
-        // Native form submission is not yet supported
-        axios.get('/api/logout')
-          .then(response => {
-            this.$router.push('login')
-          })
-      //}
+    // if (this.$refs.form.validate()) {
+      // Native form submission is not yet supported
+      axios.get('/api/logout')
+        .then(response => {
+          this.$store.commit('loggedOut')
+          this.$router.push('login')
+        })
+    // }
     }
   }
 }

@@ -53,19 +53,20 @@ export default {
   },
   methods: {
     login () {
-      //if (this.$refs.form.validate()) {
-        // Native form submission is not yet supported
-        axios.post('/api/login', {
-          username: this.usernameInput,
-          password: this.passwordInput
+      // if (this.$refs.form.validate()) {
+      // Native form submission is not yet supported
+      axios.post('/api/login', {
+        username: this.usernameInput,
+        password: this.passwordInput
+      })
+        .then(response => {
+          this.$store.commit('loggedIn')
+          // this.usernameInput = ''
+          // this.passwordInput = ''
+          // console.log(response)
+          this.$router.push('users')
         })
-          .then(response => {
-            this.usernameInput = ''
-            this.passwordInput = ''
-            console.log(response)
-            this.$router.push('users')
-          })
-      //}
+      // }
     }
   }
 }
